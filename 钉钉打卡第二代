@@ -1,0 +1,52 @@
+import time
+import pyautogui
+from PIL import ImageGrab, Image
+import schedule
+print("开始运行")
+time.sleep(1)
+def dong():
+    i3 = 0
+    i2 = pyautogui.locateOnScreen(i1,grayscale=True,confidence=.9)
+    while i2 == None and i3 < 1:#个人需要，因为每次我们都要在钉群的对话框里输入以表示已在，所以解释是：如果条件没达成，停留在当前步骤不停止检测，直到符合条件
+        print("未识别到重要步骤，将循环于此直至达成条件！")
+        time.sleep(2)
+        i2 = pyautogui.locateOnScreen(i1,grayscale=True,confidence=.9)
+        if i2 != None:
+            i3 = i3 + 1
+            print("已经识别到重要按钮")#跳出循环
+    if i2 !=None:
+        x,y,width,hight = i2
+        time.sleep(2)
+        pyautogui.click(x,y,button="left")
+        print("已经点击重要步骤")
+
+i1 = Image.open("01.png")#这是我钉钉群的头像
+dong()
+i1 = Image.open("02.png")#这是钉钉的对话框点击
+dong()
+pyautogui.typewrite("goodmorning!everony!Today is very good!")#模拟键盘输入：goodmore
+i1 =  Image.open("03.png")#这是钉钉的发送的截图，供机器人自动点击
+dong()
+
+def ding():
+    b = pyautogui.locateOnScreen(a,grayscale=True,confidence=.9)#截取屏幕当前界面并且查看是否有目标地方
+    if b == None:
+        print("暂无识别内容")
+        time.sleep(2)
+    else:
+        x,y,width,height=b
+        time.sleep(2)
+        pyautogui.click(x,y,button="left")
+        print("点击成功")
+        time.sleep(2)
+
+while True:
+    if True:
+        a=Image.open("1.png")#调去需要点击的图片
+        ding()
+    if True:
+        a=Image.open("2.png")
+        ding()
+    if True:
+        a=Image.open("3.png")
+        ding()
