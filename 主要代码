@@ -19,6 +19,9 @@ while True:
 		pyautogui.click(x,y,button='left')#移动并按下鼠标左键
 		print("已经点击:目标1")
 
+pyautogui使用过功能（分支）（主要功能在上文的’主要代码‘）
+pyautogui.typewrite("1115")#输入
+
 time模块使用：
 import time #导入模块
 time.sleep(5)#暂停3秒后继续执行
