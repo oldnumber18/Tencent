@@ -1,0 +1,29 @@
+更新时间：2022.12.14
+参考：腾讯课堂第一次.py
+使用的库：
+time 用于：1.点击时间  2.用于延时执行
+pyautogui 用于：点击
+PIL 用于：识别屏幕
+
+主要代码：
+import pyautogui
+from PIL import Image
+while True:
+	photo= Image.open("1.png")#导入的图片，并赋值给 photo
+  please = pyautogui.locateOnScreen(photo, grayscale=True,confidence=.9)#截取当前屏幕信息并查找目标图（photo）
+	if please == None: 
+		print ("没有找到:目标图1")
+	else:
+		x,y,width,height=please
+		print ("该图标在屏幕中的位置是:X={},Y={}，宽{}像素,高{}像素".format(x,y,width,height))
+		pyautogui.click(x,y,button='left')#移动并按下鼠标左键
+		print("已经点击:目标1")
+
+time模块使用：
+import time #导入模块
+time.sleep(5)#暂停3秒后继续执行
+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))#获取当前时间，如果不对，请注意自己电脑设置的时间
+如果需要打印时间的话加个print()，
+e.g:
+print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+
